@@ -1,0 +1,25 @@
+package com.example.smartLibrary.dto;
+
+public class BorrowRequestDTO {
+    private Long memberId;
+    private Long bookId;
+    public BorrowRequestDTO(Long bookId) {
+        this.bookId = bookId;
+    }
+    public BorrowRequestDTO(Long memberId, Long bookId) {
+        this.memberId = memberId;
+        this.bookId = bookId;
+    }
+    public Long getMemberId() {
+        return memberId;
+    }
+    public Long getBookId() {
+        return bookId;
+    }
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
+    }
+}
