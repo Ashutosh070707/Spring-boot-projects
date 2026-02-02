@@ -3,9 +3,7 @@ package com.example.smartLibrary.dto;
 public class BorrowRequestDTO {
     private Long memberId;
     private Long bookId;
-    public BorrowRequestDTO(Long bookId) {
-        this.bookId = bookId;
-    }
+    
     public BorrowRequestDTO(Long memberId, Long bookId) {
         this.memberId = memberId;
         this.bookId = bookId;
@@ -21,5 +19,7 @@ public class BorrowRequestDTO {
     }
     public void setBookId(Long bookId) {
         this.bookId = bookId;
+    }
+    public BorrowRequestDTO() {
     }
 }

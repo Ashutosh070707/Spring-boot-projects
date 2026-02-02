@@ -1,13 +1,13 @@
 package com.example.smartLibrary.dto;
 
-public class MemberDTO {
+public class MemberRequestDTO {
     private String name;
     private String email;
-    public MemberDTO(String name, String email) {
+    public MemberRequestDTO(String name, String email) {
         this.name = name;
         this.email = email;
     }
-    public MemberDTO() {
+    public MemberRequestDTO() {
     }
     public String getName() {
         return name;

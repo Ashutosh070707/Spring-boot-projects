@@ -15,13 +15,16 @@ public class Member {
     private String name;
     private String email;
     private LocalDate membershipDate;
+    private Long totalBooksBorrowed;
+    
     public Member() {
     }
-    public Member(Long id, String name, String email, LocalDate membershipDate) {
+    public Member(Long id, String name, String email, LocalDate membershipDate, Long totalBooksBorrowed) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.membershipDate = membershipDate;
+        this.totalBooksBorrowed = totalBooksBorrowed;
     }
     public Long getId() {
         return id;
@@ -35,6 +38,9 @@ public class Member {
     public LocalDate getMembershipDate() {
         return membershipDate;
     }
+    public Long getTotalBooksBorrowed() {
+        return totalBooksBorrowed;
+    }
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,6 +53,7 @@ public class Member {
     public void setMembershipDate(LocalDate membershipDate) {
         this.membershipDate = membershipDate;
     }
-
-    
+    public void setTotalBooksBorrowed(Long totalBooksBorrowed) {
+        this.totalBooksBorrowed = totalBooksBorrowed;
+    }
 }

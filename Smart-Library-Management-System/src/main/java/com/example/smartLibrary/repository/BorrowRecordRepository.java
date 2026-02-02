@@ -1,11 +1,13 @@
 package com.example.smartLibrary.repository;
 
-import java.lang.reflect.Member;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.smartLibrary.entity.BorrowRecord;
 
 public interface BorrowRecordRepository extends JpaRepository<BorrowRecord, Long> {
-    long countByMemberAndIsActiveTrue(Member member);
+    Long countByMemberIdAndIsActiveTrue(Long memberId);
+    Optional<BorrowRecord> findByMemberIdAndBookIdAndIsActiveTrue(Long memberId,  Long bookId);
+    Optional<BorrowRecord> findByMemberIdAndBookIdAndIsActiveFalse(Long memberId, Long bookId);
 }
