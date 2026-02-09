@@ -2,6 +2,7 @@ package com.example.demo.enums;
 
 public enum ResourceType {
     DATABASE,
-    SERVER,
-    APPLICATION
+    API_ENDPOINT,
+    FILE,
+    UI_COMPONENT
 }

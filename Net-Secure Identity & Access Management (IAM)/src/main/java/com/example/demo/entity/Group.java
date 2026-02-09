@@ -9,27 +9,32 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 @Node("Group")
 public class Group {
     @Id
     @GeneratedValue(generatorClass = UUIDStringGenerator.class)
     private String id; 
+    @NotBlank(message = "Name is required")
     private String name;
+    @Size(max = 500, message = "Description cannot exceed 500 characters")
     private String description;
 
     @Relationship(type="CHILD_OF", direction=Relationship.Direction.OUTGOING)
-    private List<Group> groups = new ArrayList<>();
+    private List<Group> parents = new ArrayList<>();
     @Relationship(type="HAS_ACCESS", direction=Relationship.Direction.OUTGOING)
     private List<Resource> resources = new ArrayList<>();
 
     public Group() {
     }
 
-    public Group(String id, String name, String description, List<Group> groups, List<Resource> resources) {
+    public Group(String id, String name, String description, List<Group> parents, List<Resource> resources) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.groups = groups;
+        this.parents = parents;
         this.resources = resources;
     }
 
@@ -45,8 +50,8 @@ public class Group {
         return description;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public List<Group> getParents() {
+        return parents;
     }
 
     public List<Resource> getResources() {
@@ -65,8 +70,8 @@ public class Group {
         this.description = description;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setParents(List<Group> parents) {
+        this.parents = parents;
     }
 
     public void setResources(List<Resource> resources) {
