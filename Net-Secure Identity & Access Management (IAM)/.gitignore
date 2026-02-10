@@ -34,3 +34,4 @@ build/
 
 # Neo4j Database Credentials
 application-dev.properties
+application-prod.properties

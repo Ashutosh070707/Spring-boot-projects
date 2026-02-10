@@ -48,11 +48,11 @@ public class GroupService {
     }
 
     @Transactional
-    public Group addResourceToGroup(String groupName, String resourceId) {
+    public Group addResourceToGroup(String groupName, String resourceName) {
         Group group = groupRepository.findByName(groupName)
                 .orElseThrow(() -> new IllegalArgumentException("No group found with name: " + groupName));
-        Resource resource = resourceRepository.findById(resourceId)
-                .orElseThrow(() -> new IllegalArgumentException("No resource found with id: " + resourceId));
+        Resource resource = resourceRepository.findByName(resourceName)
+                .orElseThrow(() -> new IllegalArgumentException("No resource found with name: " + resourceName));
 
         if (group.getResources().stream().anyMatch((r) -> r.getId().equals(resource.getId()))) {
             throw new IllegalArgumentException("The specified resource is already associated with the group.");
@@ -61,3 +61,5 @@ public class GroupService {
         return groupRepository.save(group);
     }
 }
+
+

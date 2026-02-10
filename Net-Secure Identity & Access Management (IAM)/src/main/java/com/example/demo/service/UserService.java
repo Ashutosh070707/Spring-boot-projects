@@ -40,4 +40,8 @@ public class UserService {
         user.getGroups().add(group);
         return userRepository.save(user);
     }
+
+    public boolean checkAccess(String username, String resourceName) {
+        return userRepository.hasAccessToResource(username, resourceName);
+    }
 }

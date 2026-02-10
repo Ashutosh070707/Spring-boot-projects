@@ -14,4 +14,7 @@ public interface GroupRepository extends Neo4jRepository<Group, String> {
 
     @Query("match (start:Group {name: $startName}), (end:Group {name: $endName}) " + "match path = (start)-[:CHILD_OF*]->(end) " + "return count(path)>0")
     boolean isDescendent(@Param("startName") String startName, @Param("endName") String endName);
+
+    @Query("MATCH (g:Group {name: $groupName})<-[:MEMBER_OF*]-(u:User) RETURN count(u)")
+    long countUsersInGroup(@Param("groupName") String groupName);
 }

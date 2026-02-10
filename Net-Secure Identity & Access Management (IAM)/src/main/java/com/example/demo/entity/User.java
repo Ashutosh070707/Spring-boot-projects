@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+// import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
@@ -11,6 +12,7 @@ import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 
 import com.example.demo.enums.UserRole;
 import com.example.demo.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 // Import these (jakarta.* for Spring Boot 3+)
 import jakarta.validation.constraints.Email;
@@ -26,6 +28,9 @@ public class User {
     private String name;
     @NotBlank(message = "Username is required")
     private String username;
+    @NotBlank(message = "Password is required")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
     @NotBlank(message = "Email is required")
     @Email(message = "Email must be valid")
     private String email;
@@ -40,10 +45,11 @@ public class User {
 
     public User() {
     }
-    public User(String id, String name, String username, String email, UserStatus status, UserRole role, List<Group> groups) {
+    public User(String id, String name, String username, String password, String email, UserStatus status, UserRole role, List<Group> groups) {
         this.id = id;
         this.name = name;
         this.username = username;
+        this.password = password;
         this.email = email;
         this.status = status;
         this.role = role;
@@ -57,6 +63,9 @@ public class User {
     }
     public String getUsername() {
         return username;
+    }
+    public String getPassword() {
+        return password;
     }
     public String getEmail() {
         return email;
@@ -78,6 +87,9 @@ public class User {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
     public void setEmail(String email) {
         this.email = email;
